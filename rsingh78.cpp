@@ -1,50 +1,96 @@
-#include<iostream>
-#include<climits>
-using namespace std;
+/************************************
+Insertion sort program in c++ 
+Written by Ranvir SIngh
 
-int max(int a, int b){// maximum of two numbers/.
-if(a>b)
-	return a;
-else
-	return b;
+1) This program asks the user to 
+input integers and then it prints
+the output in an ascending order
+of the same integers.
+2) The program prints each iteration
+of the insertion sort algorithm.
+************************************/
+#include <bits/stdc++.h>
+ 
+using namespace std; 
+  
+/* Function to sort all elements*/
+void Sorting(int arr[], int n)  
+{  
+    int i, index, j;  
+    for (i = 1; i < n; i++) 
+    {  
+        index = arr[i];  
+        j = i - 1; 
+  
+        /* Move elements */
+        while (j >= 0 && arr[j] > index) 
+        {  
+            arr[j + 1] = arr[j];
+  
+            j = j - 1;  
+        }  
+        arr[j + 1] = index;
+    }  
+
+}  
+  
+// A function for printing array of size n 
+void printingArray(int arr[], int n)  
+{  
+    int i; 
+
+    for (i = 0; i < n; i++){  
+ 
+       cout <<arr[i] << ";";  
+ 
+	}
+cout<<"\n";	
 }
-int Max(int a, int b, int c){return max(max(a, b), c);}// max of three numbers
 
-int Max_sum_subarray(int a[], int size){
-
-if(size ==1){
-return a[0];
-}
-
-int m = size/2;
-int left_MMS = Max_sum_subarray(a, m);
-int right_MMS = Max_sum_subarray(a+m, size-m);
-
-int leftsum=INT_MIN; int sum=0;
-for(int i=(m-1); i>=0; i--){
-sum = sum + a[i]; 
-leftsum = max(sum, leftsum);
-}
-sum=0; 
-int rightsum = INT_MIN;
-for(int i=m; i<size; i++){
-sum= sum+a[i];
-rightsum = max(rightsum, sum); 
-}
-int crossingsum = leftsum + rightsum;
-return Max(right_MMS, left_MMS, crossingsum);
-}
-
-int main(){
+  
+/* Main Driver code */
+int main()  
+{  
 int n;
 cin>>n;
-int arr[n];
+
+    int arr[n];  
+     
+
 for(int i=0;i<n;i++){
 cin>>arr[i];
+
 }
-int max_sum = Max_sum_subarray(arr, n);
-cout<<max_sum;
-}
+for(int i=0; i<n; i++){
+	if(i>0){  
+    Sorting(arr, i+1);  
+    printingArray(arr, i+1);  
+  
+   
+		}
+	} 
+	return 0; 
+}  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
